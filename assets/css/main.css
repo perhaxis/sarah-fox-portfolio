@@ -1,6 +1,6 @@
 body {
 	background-color: #FAF9F5 !important;
-	background-image: url("/images/notextCommunity.png");
+	background-image: url("../images/notextCommunity.png");
 	background-repeat: no-repeat; 
   	background-size: contain;
   	background-position: top center;
