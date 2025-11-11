@@ -170,11 +170,15 @@ p {
 		padding: auto;
 		margin: auto;
 	}
-	
 }
 
 .col-1, .col-2 {
 	width: 490px;
+}
+@media (max-width: 500px) {
+	.col-1, .col-2 {
+		width: 400px;
+	}
 }
 
 .news-highlights {
@@ -305,6 +309,11 @@ li {
 @media (max-width: 900px) {
 	.w3-panel {
 		height: 920px;
+	}
+}
+@media (max-width: 500px) {
+	.w3-panel {
+		height: 800px;
 	}
 }
 
