@@ -278,15 +278,34 @@ li {
 	}
 }
 
+
+.w3-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-slideshow {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: top right;
+  background-repeat: no-repeat;
+  transition: opacity 6s ease-in;
+  z-index: -1;
+}
+
+
+
+
 .w3-panel {
 	margin-top: 0px;
 	margin-bottom: 0px;
 	width: 100%;
-	background-image: url("../../images/notextCommunity.png");
+	/*background-image: url("../../images/notextCommunity.png");
 	background-repeat: no-repeat; 
   	background-size: cover;
   	background-position: top right;
-  	background-attachment: scroll;
+  	background-attachment: scroll;*/
 	height: 720px;
 }
 @media (max-width: 950px) {

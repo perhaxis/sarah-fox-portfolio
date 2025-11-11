@@ -22,6 +22,7 @@
 
 		<!-- Header -->
 		<header class="w3-panel">
+			 <div class="bg-slideshow"></div>
 
 			<div class="text-container">
 
@@ -115,9 +116,7 @@
 		<div class="copyright">
 		 	&copy; <span id="year"></span> by Sarah Fox
 		</div>
-		<!--
-		<p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank"
-				class="w3-hover-text-green">w3.css</a></p>-->
+		
 	</footer>
 
 </body>
@@ -125,6 +124,33 @@
 <script>
   document.getElementById("year").innerHTML =
   new Date().getFullYear();
+</script>
+
+<script>
+  const images = [
+    "../../images/notextCommunity.png",
+    "../../images/notextCooks.png",
+    "../../images/notextBus.png"
+  ];
+
+  const bg = document.querySelector('.bg-slideshow');
+  let current = 0;
+
+  function changeBackground() {
+    bg.style.opacity = 0; // start fade out
+    setTimeout(() => {
+      current = (current + 1) % images.length;
+      bg.style.backgroundImage = `url('${images[current]}')`;
+      bg.style.opacity = 1; // fade in
+    }, 10); // fade duration (matches CSS transition)
+  }
+
+  // initialize
+  bg.style.backgroundImage = `url('${images[0]}')`;
+  bg.style.opacity = 1;
+
+  // cycle every 6 seconds
+  setInterval(changeBackground, 6000);
 </script>
 
 </html>
