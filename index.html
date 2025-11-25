@@ -12,18 +12,20 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="stylesheet" href="https://use.typekit.net/dwi1rtd.css">
 	<link rel="stylesheet" href="https://use.typekit.net/dwi1rtd.css">
-	<link rel="icon" type="image/png" href="images/favicon.png"/>
+	<link rel="icon" loading="lazy" type="image/png" href="images/favicon.png" />
 
 </head>
 
 <body>
+
+	 <div id="site-loader"></div>
 
 	<!-- !PAGE CONTENT! -->
 	<div class="w3-content" style="max-width:1500px">
 
 		<!-- Header -->
 		<header class="w3-panel">
-			 <div class="bg-slideshow"></div>
+			<div class="bg-slideshow"></div>
 
 			<div class="text-container">
 
@@ -55,6 +57,11 @@
 
 			</div>
 
+			<!-- Mobile slideshow (hidden on desktop) -->
+			<div class="mobile-slideshow">
+				<img id="mobile-slide-img" loading="lazy" src="" alt="Slideshow image">
+			</div>
+
 		</header>
 
 
@@ -72,38 +79,48 @@
 
 		<div class="two-col">
 			<div class="col-1">
-				
+
 				<ul class="news-highlights">
 					<h2>RECENT NEWS</h2>
-					<li>Book Under Contract with UC Press! Reparative AI: Lessons in 
-						Remaking Artificial Intelligence from Those Who Fix It is a part of the Press’ 
+					<li>Book Under Contract with UC Press! Reparative AI: Lessons in
+						Remaking Artificial Intelligence from Those Who Fix It is a part of the Press’
 						Co-Opting AI series</li>
-					<li>ACM CSCW’25 Best Paper Award for our piece, “Punctuated and Prolonged: 
+					<li>ACM CSCW’25 Best Paper Award for our piece, “Punctuated and Prolonged:
 						A Workers' Inquiry into Infrastructural Failures in Bus Transit”</li>
-					<li>Honored to have been awarded the NSF CAREER award for my research on “Worker-Centered Design”</li>
-					<li>Our project “Public Space Robotics” has been awarded funding through the NSF Smart & Connected Communities program</li>
-					<li>New piece from the lab out now in New Media & Society, “‘Oh, you’re watching me’: Care workers’ experiences of surveillant 
+					<li>Honored to have been awarded the NSF CAREER award for my research on “Worker-Centered Design”
+					</li>
+					<li>Our project “Public Space Robotics” has been awarded funding through the NSF Smart & Connected
+						Communities program</li>
+					<li>New piece from the lab out now in New Media & Society, “‘Oh, you’re watching me’: Care workers’
+						experiences of surveillant
 						assemblages on the platform and in the home”</li>
-					<li>ACM/IEEE HRI’25 Best Paper Award for our article, “Minding the Stop-gap: Attending to the ‘Temporary,’ Unplanned, and Added 
+					<li>ACM/IEEE HRI’25 Best Paper Award for our article, “Minding the Stop-gap: Attending to the
+						‘Temporary,’ Unplanned, and Added
 						Labor of Human-Robot Collaboration in Context”</li>
-					<li>ACM CHI’25 Honorable Mention Award for our piece, “‘Simulacrum of Stories’: Examining Large Language Models as 
+					<li>ACM CHI’25 Honorable Mention Award for our piece, “‘Simulacrum of Stories’: Examining Large
+						Language Models as
 						Qualitative Research Participants”</li>
 					<li>13 Papers from the lab to be presented at ACM CHI’25, DIS’25, FAccT’25 and CSCW’25</li>
-					<li>5 Other NSF Grants: RAPID, SCC, FW-HTF and ReDDDoT: “The Transformation of Essential Work,” “Equitable new mobility,”  “Future of 
-						Automation in the Hospitality Industry,” and “Responsible AI Across the Transportation Sector”</li>
+					<li>5 Other NSF Grants: RAPID, SCC, FW-HTF and ReDDDoT: “The Transformation of Essential Work,”
+						“Equitable new mobility,” “Future of
+						Automation in the Hospitality Industry,” and “Responsible AI Across the Transportation Sector”
+					</li>
 				</ul>
 			</div>
 			<div class="col-2">
-				
+
 				<ul class="talks-highlights">
 					<h2>TALKS & TRAVEL</h2>
-					<li>On the Move: Workers Steering AI Across the Transport Industry, University of California, San Diego, Sept 12-13</li>
-					<li>Seminar Talk at the Quello Center and the Future of Work Initiative, Michigan State University, Apr 18</li>
+					<li>On the Move: Workers Steering AI Across the Transport Industry, University of California, San
+						Diego, Sept 12-13</li>
+					<li>Seminar Talk at the Quello Center and the Future of Work Initiative, Michigan State University,
+						Apr 18</li>
 					<li>SxSW (Transportation Track), Austin, TX, Mar 12-13</li>
 					<li>K&L Gates Conference In Ethics and AI, CMU, Mar 11</li>
 					<li>Informatics Colloquium, Indiana University, Mar 10</li>
 					<li>National Domestic Workers Alliance Care Worker x AI Tour, San Francisco, CA, Jan 28</li>
-					<li>Labor Innovation & Technology Summit, SAG-AFTRA & AFL-CIO Technology Institute, Las Vegas, NV, Jan 8</li>
+					<li>Labor Innovation & Technology Summit, SAG-AFTRA & AFL-CIO Technology Institute, Las Vegas, NV,
+						Jan 8</li>
 					<li>Forum on AI and Labor, New York Committee for Occupational Safety & Health (NYCOSH), Dec 11</li>
 					<li>Making Connections Conference, Transit Workforce Center, Baltimore, MD, Nov 12</li>
 					<li>Human-Computer Interaction Seminar, Stanford University, Nov 8</li>
@@ -115,43 +132,111 @@
 		</div>
 
 		<div class="copyright">
-		 	&copy; <span id="year"></span> by Sarah Fox
+			&copy; <span id="year"></span> by Sarah Fox
 		</div>
-		
+
 	</footer>
 
 </body>
 
-<script>
-  document.getElementById("year").innerHTML =
-  new Date().getFullYear();
-</script>
+
 
 <script>
-  const images = [
+  // ===============================
+  // Update year
+  // ===============================
+  document.getElementById("year").innerHTML = new Date().getFullYear();
+
+  // ===============================
+  // Desktop & Mobile Image Sets
+  // ===============================
+  const desktopSlides = [
     "../../images/notextCommunity.png",
     "../../images/notextCooks.png",
     "../../images/notextBus.png"
   ];
 
-  const bg = document.querySelector('.bg-slideshow');
-  let current = 0;
+  const mobileSlides = [
+    "../../images/notextCommunity-mobile.png",
+    "../../images/notextCooks-mobile.png",
+    "../../images/notextBus-mobile.png"
+  ];
 
-  function changeBackground() {
-    bg.style.opacity = 0; // start fade out
-    setTimeout(() => {
-      current = (current + 1) % images.length;
-      bg.style.backgroundImage = `url('${images[current]}')`;
-      bg.style.opacity = 1; // fade in
-    }, 10); // fade duration (matches CSS transition)
+  // ===============================
+  // Preload both sets
+  // ===============================
+  let loaded = 0;
+  const totalImages = desktopSlides.length + mobileSlides.length;
+  const cache = [];
+
+  [...desktopSlides, ...mobileSlides].forEach(src => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => {
+      loaded++;
+      if (loaded === totalImages) startSlideshowsAndFade();
+    };
+    cache.push(img);
+  });
+
+  // ===============================
+  // Start slideshows and fade overlay
+  // ===============================
+  function startSlideshowsAndFade() {
+    const bg = document.querySelector(".bg-slideshow");          // desktop
+    const mobileImg = document.getElementById("mobile-slide-img"); // mobile
+    const loader = document.getElementById("site-loader");        // overlay
+
+    let index = 0;
+
+    // Initialize first images
+    if (bg) bg.style.backgroundImage = `url('${desktopSlides[0]}')`;
+    if (mobileImg) mobileImg.src = mobileSlides[0];
+
+    // ==========================
+    // Fade out the overlay
+    // ==========================
+    if (loader) {
+      loader.classList.add("fade-out");  
+      setTimeout(() => loader.remove(), 700); 
+    }
+
+    // ==========================
+    // Slideshow function
+    // ==========================
+    function next() {
+      index = (index + 1) % desktopSlides.length;
+
+      // DESKTOP fade
+      if (bg) {
+        bg.style.opacity = 0;
+        setTimeout(() => {
+          bg.style.backgroundImage = `url('${desktopSlides[index]}')`;
+          bg.style.opacity = 1;
+        }, 400);
+      }
+
+      // MOBILE fade
+      if (mobileImg) {
+        mobileImg.style.opacity = 0;
+        setTimeout(() => {
+          mobileImg.src = mobileSlides[index];
+          mobileImg.style.opacity = 1;
+        }, 200);
+      }
+    }
+
+    // Start slideshow interval
+    setInterval(next, 6000);
   }
 
-  // initialize
-  bg.style.backgroundImage = `url('${images[0]}')`;
-  bg.style.opacity = 1;
-
-  // cycle every 6 seconds
-  setInterval(changeBackground, 6000);
+  // ===============================
+  // Fallback: if images take too long
+  // ===============================
+  setTimeout(() => {
+    if (loaded < totalImages) startSlideshowsAndFade();
+  }, 3000); // 3s max wait
 </script>
+
 
 </html>
