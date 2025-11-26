@@ -1,128 +1,103 @@
-(function($) {
+// ===============================
+// Run everything after DOM loads
+// ===============================
+document.addEventListener("DOMContentLoaded", () => {
 
-	var	$window = $(window),
-		$body = $('body');
+  // ===============================
+  // Update year
+  // ===============================
+  const yearEl = document.getElementById("year");
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
 
-	// Breakpoints.
-		breakpoints({
-			xlarge:   [ '1281px',  '1680px' ],
-			large:    [ '981px',   '1280px' ],
-			medium:   [ '737px',   '980px'  ],
-			small:    [ '481px',   '736px'  ],
-			xsmall:   [ '361px',   '480px'  ],
-			xxsmall:  [ null,      '360px'  ]
-		});
+  // ===============================
+  // Desktop & Mobile Image Sets
+  // ===============================
+  const desktopSlides = [
+    "images/community.png",
+    "images/cooks.png",
+    "images/bus.png"
+  ];
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
+  const mobileSlides = [
+    "images/community-mobile.png",
+    "images/cooks-mobile.png",
+    "images/bus-mobile.png"
+  ];
 
-	// Touch?
-		if (browser.mobile)
-			$body.addClass('is-touch');
+  // ===============================
+  // Preload both sets
+  // ===============================
+  let loaded = 0;
+  const totalImages = desktopSlides.length + mobileSlides.length;
+  const cache = [];
 
-	// Forms.
-		var $form = $('form');
-
-		// Auto-resizing textareas.
-			$form.find('textarea').each(function() {
-
-				var $this = $(this),
-					$wrapper = $('<div class="textarea-wrapper"></div>'),
-					$submits = $this.find('input[type="submit"]');
-
-				$this
-					.wrap($wrapper)
-					.attr('rows', 1)
-					.css('overflow', 'hidden')
-					.css('resize', 'none')
-					.on('keydown', function(event) {
-
-						if (event.keyCode == 13
-						&&	event.ctrlKey) {
-
-							event.preventDefault();
-							event.stopPropagation();
-
-							$(this).blur();
-
-						}
-
-					})
-					.on('blur focus', function() {
-						$this.val($.trim($this.val()));
-					})
-					.on('input blur focus --init', function() {
-
-						$wrapper
-							.css('height', $this.height());
-
-						$this
-							.css('height', 'auto')
-							.css('height', $this.prop('scrollHeight') + 'px');
-
-					})
-					.on('keyup', function(event) {
-
-						if (event.keyCode == 9)
-							$this
-								.select();
-
-					})
-					.triggerHandler('--init');
-
-				// Fix.
-					if (browser.name == 'ie'
-					||	browser.mobile)
-						$this
-							.css('max-height', '10em')
-							.css('overflow-y', 'auto');
-
-			});
-
-
-})(jQuery);
-
-window.addEventListener('load', () => {
-    const faders = document.querySelectorAll('.fade-in-up');
-
-    const reveal = (el, delay) => {
-      setTimeout(() => {
-        el.classList.add('visible');
-      }, delay);
+  [...desktopSlides, ...mobileSlides].forEach(src => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => {
+      loaded++;
+      if (loaded === totalImages) startSlideshowsAndFade();
     };
-
-    const observer = new IntersectionObserver((entries) => {
-      let delay = 0;
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          reveal(entry.target, delay);
-          delay += 150;
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.1,
-    });
-
-    // Wait until layout/render is complete
-    window.requestAnimationFrame(() => {
-      let loadDelay = 0;
-      faders.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight;
-        if (isVisible) {
-          reveal(el, loadDelay);
-          loadDelay += 150;
-        } else {
-          observer.observe(el);
-        }
-      });
-    });
-
-	
-
+    cache.push(img);
   });
+
+  // ===============================
+  // Start slideshows and fade overlay
+  // ===============================
+  function startSlideshowsAndFade() {
+    const bg = document.querySelector(".bg-slideshow");          // desktop
+    const mobileImg = document.getElementById("mobile-slide-img"); // mobile
+    const loader = document.getElementById("site-loader");        // overlay
+
+    let index = 0;
+
+    // Initialize first images
+    if (bg) bg.style.backgroundImage = `url('${desktopSlides[0]}')`;
+    if (mobileImg) mobileImg.src = mobileSlides[0];
+
+    // ==========================
+    // Fade out the overlay
+    // ==========================
+    if (loader) {
+      loader.classList.add("fade-out");
+      setTimeout(() => loader.remove(), 700);
+    }
+
+    // ==========================
+    // Slideshow function
+    // ==========================
+    function next() {
+      index = (index + 1) % desktopSlides.length;
+
+      // DESKTOP fade
+      if (bg) {
+        bg.style.opacity = 0;
+        setTimeout(() => {
+          bg.style.backgroundImage = `url('${desktopSlides[index]}')`;
+          bg.style.opacity = 1;
+        }, 400);
+      }
+
+      // MOBILE fade
+      if (mobileImg) {
+        mobileImg.style.opacity = 0;
+        setTimeout(() => {
+          mobileImg.src = mobileSlides[index];
+          mobileImg.style.opacity = 1;
+        }, 200);
+      }
+    }
+
+    // Start slideshow interval
+    setInterval(next, 6000);
+  }
+
+  // ===============================
+  // Fallback: if images take too long
+  // ===============================
+  setTimeout(() => {
+    if (loaded < totalImages) startSlideshowsAndFade();
+  }, 3000); // 3s max wait
+});
