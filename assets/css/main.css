@@ -1,5 +1,5 @@
 /* =============================
-   FULLSCREEN WHITE OVERLAY
+// FULLSCREEN WHITE OVERLAY
 ============================= */
 
 #site-loader {
@@ -155,7 +155,7 @@ p {
 	max-width: 148px;
 }
 
-/* On very small screens, buttons stack full-width */
+/* On small screens, buttons stack full-width */
 @media (max-width: 630px) {
 	.w3-bar .w3-bar-item {
 		flex: 1 1 100%;

@@ -1,19 +1,14 @@
-// ===============================
+
 // Run everything after DOM loads
-// ===============================
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ===============================
-  // Update year
-  // ===============================
+  // Update copyright year
   const yearEl = document.getElementById("year");
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // ===============================
   // Desktop & Mobile Image Sets
-  // ===============================
   const desktopSlides = [
     "images/community.png",
     "images/cooks.png",
@@ -26,9 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "images/bus-mobile.png"
   ];
 
-  // ===============================
-  // Preload both sets
-  // ===============================
+  // Preload both image sets
   let loaded = 0;
   const totalImages = desktopSlides.length + mobileSlides.length;
   const cache = [];
@@ -43,9 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
     cache.push(img);
   });
 
-  // ===============================
+
   // Start slideshows and fade overlay
-  // ===============================
   function startSlideshowsAndFade() {
     const bg = document.querySelector(".bg-slideshow");          // desktop
     const mobileImg = document.getElementById("mobile-slide-img"); // mobile
@@ -57,17 +49,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (bg) bg.style.backgroundImage = `url('${desktopSlides[0]}')`;
     if (mobileImg) mobileImg.src = mobileSlides[0];
 
-    // ==========================
+
     // Fade out the overlay
-    // ==========================
     if (loader) {
       loader.classList.add("fade-out");
       setTimeout(() => loader.remove(), 700);
     }
 
-    // ==========================
     // Slideshow function
-    // ==========================
     function next() {
       index = (index + 1) % desktopSlides.length;
 
@@ -94,9 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(next, 6000);
   }
 
-  // ===============================
   // Fallback: if images take too long
-  // ===============================
   setTimeout(() => {
     if (loaded < totalImages) startSlideshowsAndFade();
   }, 3000); // 3s max wait
