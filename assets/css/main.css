@@ -48,8 +48,9 @@ h2 {
 
 a {
 	font-family: "libre-franklin", sans-serif;
-	font-weight: 600;
-	font-size: 11pt;
+	color:steelblue;
+	text-decoration: none;
+	
 }
 
 p {
@@ -66,6 +67,11 @@ p {
 .text-container {
 	margin-left: 180px;
 	text-align: center;
+}
+@media (max-width: 1200px) {
+	.text-container {
+		margin-left: 60px;
+	} 
 }
 
 @media (max-width: 950px) {
@@ -201,9 +207,9 @@ p {
 
 @media (max-width: 950px) {
 	.w3-panel {
-		height: fit-content;
+		height: auto;
 		padding: 0 12px !important;
-		margin-top: 100px;
+		margin-top: 30px;
 		background-image: url("../../images/notextCommunity-mobile.png");
 		background-repeat: no-repeat;
 		background-size: contain;
@@ -219,17 +225,22 @@ p {
 
 .two-col {
 	display: flex;
-	gap: 40px;
-	justify-content: center;
+	gap: 60px;
+	justify-content: space-between;
 	flex-wrap: wrap;
-	margin: 40px auto;
-	max-width: 1000px;
+	margin: 0px 0px;
+	max-width: 100%;
+}
+@media (max-width: 950px) {
+	.two-col {
+		justify-content: center;
+	}
 }
 
 .col-1,
 .col-2 {
 	flex: 1 1 300px;
-	max-width: 500px;
+	max-width: 480px;
 }
 
 @media (max-width: 600px) {
@@ -256,6 +267,23 @@ p {
 
 li {
 	margin: 20px 0;
+}
+
+.footer-wrapper {
+	margin-left: 160px;
+	margin-right: 160px;
+}
+@media (max-width: 1200px) {
+	.footer-wrapper {
+		margin-left: 40px;
+		margin-right: 40px;
+	}
+}
+@media (max-width:950px) {
+	.footer-wrapper {
+		margin-left: 25px;
+		margin-right: 25px;
+	}
 }
 
 
@@ -334,7 +362,7 @@ li {
 		display: block;
 		width: 100%;
 		text-align: center;
-		margin: 40px 0;
+		margin: 0px 0px;
 	}
 
 	.mobile-slideshow img {
