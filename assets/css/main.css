@@ -3,18 +3,18 @@
 ============================= */
 
 #site-loader {
-    position: fixed;
-    inset: 0;
-    background: white;
-    z-index: 9999;
-    opacity: 1;
-    pointer-events: none;
-    transition: opacity 0.6s ease;
+	position: fixed;
+	inset: 0;
+	background: white;
+	z-index: 9999;
+	opacity: 1;
+	pointer-events: none;
+	transition: opacity 0.6s ease;
 }
 
 /* After fade-out */
 #site-loader.fade-out {
-    opacity: 0;
+	opacity: 0;
 }
 
 /* =========================================
@@ -22,38 +22,37 @@
 ========================================= */
 
 body {
-	background-color: #FAF9F5 !important;
-	overflow-x: hidden;
-	/* Prevent horizontal overflow */
+	background-color: #FAF9F5 !important; /* Header section off-white color */
+	overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 body,
 h1,
 h2 {
-	color: #48537a;
+	color: #48537a; /* Main text color */
 }
 
-h1 {
+h1 { /* 'Sarah Fox' text */
 	font-family: "libre-franklin", sans-serif;
 	font-weight: 800;
 	font-size: 34pt;
 }
 
-h2 {
+h2 { /* 'Recent News' and 'Talks & Travel' headers */
 	font-family: "libre-franklin", sans-serif;
-	font-weight: 600;
+	font-weight: 800;
 	font-size: 10pt;
 	text-align: left;
 }
 
-a {
+a { /* Hyperlinks */
 	font-family: "libre-franklin", sans-serif;
-	color:steelblue;
-	text-decoration: none;
-	
+	color: steelblue; /* Hyperlink color */
+	text-decoration: none; /* No underline on links */
+
 }
 
-p {
+p { /* Intro paragraph */
 	font-family: "libre-franklin", sans-serif;
 	font-weight: 300;
 	font-size: 10pt;
@@ -68,10 +67,12 @@ p {
 	margin-left: 165px;
 	text-align: center;
 }
+
+/* Decrease spacing at reduced screen sizes */
 @media (max-width: 1200px) {
 	.text-container {
 		margin-left: 45px;
-	} 
+	}
 }
 
 @media (max-width: 950px) {
@@ -83,15 +84,20 @@ p {
 	}
 }
 
+/* Restrict intro paragraph to fraction of page width
+	(to avoid overlapping background image) */
 .intro {
 	width: 40%;
 }
 
+/* Expand intro paragraph width as page width decreases
+	(background image switches to an embedded image below header) */
 @media (max-width: 1200px) {
 	.intro {
 		width: 50%;
 	}
 }
+
 @media (max-width: 950px) {
 	.intro {
 		width: 85%;
@@ -106,24 +112,24 @@ p {
 
 .about {
 	text-align: left;
-	margin: 0;
+	background-color: #FAF9F5; /* improves visibility over background image */
 	padding: 15px;
-	background-color: #FAF9F5;
+	margin: 0;
 }
 
 #name {
-	margin-bottom: 0;
 	width: fit-content;
-	background-color: #FAF9F5;
+	background-color: #FAF9F5; /* improves visibility over background image */
 	text-align: left;
 	line-height: 50px;
 	padding-right: 10px;
-	padding-bottom: 0px;
 	padding-top: 10px;
 	padding-left: 15px;
-	
-}
+	padding-bottom: 0px;
+	margin-bottom: 0;
 
+}
+/* Reduced header text & spacing on mobile */
 @media (max-width: 450px) {
 	#name {
 		font-size: 2.5em;
@@ -136,34 +142,27 @@ p {
    RESPONSIVE BUTTON BAR
 ========================================= */
 
-.w3-bar {
+.w3-bar { /* Horizontal container for 3 buttons */
+	background-color: #FAF9F5;
+	width: fit-content;
 	display: flex;
-	flex-wrap: wrap;
+	flex-wrap: wrap; /* Buttons switch to column layout on mobile */
 	justify-content: left;
 	padding-left: 15px;
 	padding-top: 10px;
 	padding-bottom: 20px;
 	padding-right: 0px;
-	background-color: #FAF9F5;
-	width: fit-content;
 }
 
-@media (max-width: 1436px) {
-	.w3-bar {
-		width: fit-content;
-	}
-}
-
-
-.w3-bar .w3-bar-item {
+.w3-bar .w3-bar-item { /* Individual button styling */
 	flex: 1 1 auto;
-	min-width: fit-content;
-	padding: 9px 15px;
-	border: 1px solid #57678C !important;
-	text-align: center;
-	margin-right: 15px;
 	width: 148px;
 	max-width: 148px;
+	min-width: fit-content;
+	border: 1px solid #48537a !important;
+	text-align: center;
+	padding: 9px 15px;
+	margin-right: 15px;
 }
 
 /* On small screens, buttons stack full-width */
@@ -187,6 +186,7 @@ p {
 	}
 }
 
+/* Button hover styling */
 .w3-button:hover {
 	color: #000 !important;
 	background-color: rgb(241, 241, 241) !important;
@@ -197,7 +197,7 @@ p {
    PANEL + BACKGROUND SLIDESHOW
 ========================================= */
 
-.w3-panel {
+.w3-panel { /* Header section container */
 	position: relative;
 	overflow: hidden;
 	margin: 0;
@@ -206,16 +206,16 @@ p {
 	height: 720px;
 }
 
-.bg-slideshow {
+.bg-slideshow { /* 3 Rotating Background Images */
 	position: absolute;
 	inset: 0;
 	background-size: cover;
 	background-position: top right;
 	background-repeat: no-repeat;
-	transition: opacity 6s ease-in;
+	transition: opacity 6s ease-in; /* Duration between image changes */
 	z-index: -1;
 }
-
+/* Mobile Background Images */
 @media (max-width: 950px) {
 	.w3-panel {
 		height: auto;
@@ -229,46 +229,43 @@ p {
 }
 
 
-
 /* =========================================
-   FOOTER – TWO COLUMN RESPONSIVE LAYOUT
+   FOOTER / TWO COLUMN RESPONSIVE LAYOUT
 ========================================= */
 
 .two-col {
 	display: flex;
 	gap: 60px;
 	justify-content: space-between;
-	flex-wrap: wrap;
+	flex-wrap: wrap; /* Switch to one long column on mobile */
 	margin: 0px 0px;
 }
+
 @media (max-width: 950px) {
 	.two-col {
-		justify-content: center;
+		justify-content: center; /* Center single, long column at reduced screen width */
 	}
 }
 
-.col-1,
-.col-2 {
+.col { /* Individual column styling */
 	flex: 1 1 300px;
 	max-width: 480px;
 }
-
+/* Mobile column spacing */
 @media (max-width: 600px) {
 
-	.col-1,
-	.col-2 {
+	.col {
 		flex: 1 1 100%;
 		max-width: 100%;
 		padding: 0 10px;
 	}
 }
-
+/* Bold text in Recent News section */
 .news-bold {
 	font-weight: 800;
 }
-
-.news-highlights,
-.talks-highlights {
+/* Recent News & Talks/Travel body text */
+.section-highlights {
 	list-style: none;
 	padding: 0 20px;
 	width: 100%;
@@ -278,44 +275,45 @@ p {
 	color: #48537a;
 	text-align: left;
 }
+/* Reduce spacing on mobile */
 @media (max-width: 600px) {
 
-	.news-highlights,
-	.talks-highlights {
+	.section-highlights {
 
 		padding: 0 5px;
 
 	}
 }
-
-.news-head, .talks-head {
+/* 'Recent Talks' and 'Talks & Travel' headers */
+.section-head {
 	padding: 0 20px;
-	font-family: "libre-franklin", sans-serif;
-	font-weight: 800;
 }
+/* Reduce spacing on mobile */
 @media (max-width: 600px) {
 
-	.news-head, .talks-head {
+	.section-head {
 
 		padding: 0 5px;
 
 	}
 }
-
-li {
+/* List Item Spacing */
+li { 
 	margin: 20px 0;
 }
-
+/* Footer Container */
 .footer-wrapper {
 	margin-left: 160px;
 	margin-right: 160px;
 }
+/* Reduce Footer Spacing at Smaller Screen Size */
 @media (max-width: 1200px) {
 	.footer-wrapper {
 		margin-left: 40px;
 		margin-right: 40px;
 	}
 }
+
 @media (max-width:950px) {
 	.footer-wrapper {
 		margin-left: 25px;
@@ -325,7 +323,7 @@ li {
 
 
 /* =========================================
-   FOOTER COPYRIGHT
+   COPYRIGHT
 ========================================= */
 
 .copyright {
@@ -342,24 +340,24 @@ li {
    CONTENT WIDTH
 ========================================= */
 
-.w3-content {
+.w3-content { /* Limit content width for readability */
 	max-width: 980px;
 	margin-left: 0;
 	margin-right: auto;
 }
-
+/* Adjusted spacing for smaller screens */
 @media (max-width: 950px) {
 	.w3-content {
 		margin: 0 30px;
 	}
 }
 
-/* Hide mobile slideshow by default (desktop only) */
+/* Hide mobile slideshow by default */
 .mobile-slideshow {
 	display: none;
 }
 
-/* Mobile: turn off background slideshow & show inline image */
+/* Mobile: turn off background slideshow & show embedded image */
 @media (max-width: 950px) {
 
 	.bg-slideshow {
@@ -368,7 +366,7 @@ li {
 	}
 
 	.mobile-slideshow {
-		display: block;
+		display: block; /* Visibility = on */
 		width: 100%;
 		text-align: center;
 		margin: 0px 0px;

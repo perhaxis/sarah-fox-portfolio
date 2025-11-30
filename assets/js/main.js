@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function next() {
       index = (index + 1) % desktopSlides.length;
 
-      // DESKTOP fade
+      // Desktop fade
       if (bg) {
         bg.style.opacity = 0;
         setTimeout(() => {
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 400);
       }
 
-      // MOBILE fade
+      // Mobile fade
       if (mobileImg) {
         mobileImg.style.opacity = 0;
         setTimeout(() => {
@@ -80,10 +80,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Start slideshow interval
-    setInterval(next, 6000);
+    setInterval(next, 6000); // 6 seconds
   }
 
-  // Fallback: if images take too long
+  // Fallback if images take too long
   setTimeout(() => {
     if (loaded < totalImages) startSlideshowsAndFade();
   }, 3000); // 3s max wait
