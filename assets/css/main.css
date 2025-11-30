@@ -121,6 +121,7 @@ p {
 	padding-bottom: 0px;
 	padding-top: 10px;
 	padding-left: 15px;
+	
 }
 
 @media (max-width: 450px) {
@@ -262,6 +263,10 @@ p {
 	}
 }
 
+.news-bold {
+	font-weight: 800;
+}
+
 .news-highlights,
 .talks-highlights {
 	list-style: none;
@@ -286,6 +291,7 @@ p {
 .news-head, .talks-head {
 	padding: 0 20px;
 	font-family: "libre-franklin", sans-serif;
+	font-weight: 800;
 }
 @media (max-width: 600px) {
 
