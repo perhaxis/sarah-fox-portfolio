@@ -86,5 +86,5 @@ document.addEventListener("DOMContentLoaded", () => {
   // Fallback if images take too long
   setTimeout(() => {
     if (loaded < totalImages) startSlideshowsAndFade();
-  }, 3000); // 3s max wait
+  }, 1000); // 1s max wait
 });
